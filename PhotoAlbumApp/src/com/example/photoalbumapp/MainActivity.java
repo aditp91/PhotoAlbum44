@@ -27,7 +27,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
 
-	/**
+	/***
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
