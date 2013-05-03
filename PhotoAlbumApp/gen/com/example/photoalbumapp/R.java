@@ -8,33 +8,49 @@
 package com.example.photoalbumapp;
 
 public final class R {
+    public static final class array {
+        /**   Initial list of albums 
+         */
+        public static final int album_array=0x7f060000;
+    }
     public static final class attr {
+    }
+    public static final class color {
+        public static final int Black=0x7f040001;
+        public static final int DeepPurple=0x7f040003;
+        public static final int MyGreen=0x7f040002;
+        public static final int MyIndigo=0x7f040004;
+        public static final int White=0x7f040000;
+        public static final int Yellow=0x7f040005;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int album=0x7f070003;
-        public static final int button1=0x7f070004;
-        public static final int button2=0x7f070001;
-        public static final int button3=0x7f070002;
-        public static final int menu_settings=0x7f070005;
-        public static final int pager=0x7f070000;
+        public static final int LinearLayout2=0x7f090000;
+        public static final int add_photo=0x7f090002;
+        public static final int album_list=0x7f09000b;
+        public static final int album_name=0x7f090001;
+        public static final int create=0x7f090007;
+        public static final int delete=0x7f090009;
+        public static final int display_photo=0x7f090004;
+        public static final int menu_settings=0x7f09000c;
+        public static final int open_view=0x7f09000a;
+        public static final int pager=0x7f090006;
+        public static final int photo_list=0x7f090005;
+        public static final int remove_photo=0x7f090003;
+        public static final int rename=0x7f090008;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
+        public static final int activity_albuminfo=0x7f030000;
+        public static final int activity_main=0x7f030001;
     }
     public static final class menu {
-        public static final int activity_main=0x7f060000;
+        public static final int activity_main=0x7f080000;
     }
     public static final class string {
-        public static final int Album=0x7f040006;
-        public static final int app_name=0x7f040000;
-        public static final int hello_world=0x7f040002;
-        public static final int menu_settings=0x7f040001;
-        public static final int title_section1=0x7f040003;
-        public static final int title_section2=0x7f040004;
-        public static final int title_section3=0x7f040005;
+        public static final int app_name=0x7f050000;
+        public static final int menu_settings=0x7f050001;
     }
     public static final class style {
         /** 
@@ -58,10 +74,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f070001;
     }
 }
