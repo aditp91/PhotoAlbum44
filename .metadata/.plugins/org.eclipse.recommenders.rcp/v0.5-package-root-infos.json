@@ -1,0 +1,28 @@
+[
+  {
+    "symbolicName": "android-support-v4",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "48c94ae70fa65718b382098237806a5909bb096e",
+    "jarFileModificationDate": "2013-04-20T16:34:45-04:00",
+    "location": "/Users/geethasrini/Documents/Android_PhotoAlbum44/PhotoAlbumApp/libs/android-support-v4.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "android",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "4ce719a74198cca562a8859e7d4ffa38f3ec26b4",
+    "jarFileModificationDate": "2013-02-13T06:54:22-05:00",
+    "location": "/Users/geethasrini/android-sdk-macosx/sdk/platforms/android-17/android.jar",
+    "javaRuntime": false
+  }
+]

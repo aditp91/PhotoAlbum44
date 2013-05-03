@@ -1,0 +1,7 @@
+{
+  "/Users/geethasrini/android-sdk-macosx/sdk/platforms/android-17/android.jar": {
+    "location": "/Users/geethasrini/android-sdk-macosx/sdk/platforms/android-17/android.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027/Users/geethasrini/android-sdk-macosx/sdk/platforms/android-17/android.jar\u0027. Neither fingerprint \u00274ce719a74198cca562a8859e7d4ffa38f3ec26b4\u0027 nor symbolic name \u0027android\u0027 are known."
+  }
+}
