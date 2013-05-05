@@ -7,37 +7,8 @@
     <TextView
         android:id="@+id/photoname"
         android:layout_width="match_parent"
-        android:layout_height="33dp"
+        android:layout_height="wrap_content"
         android:text="TextView" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="30dp" >
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="33dp"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:text="Button" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,9 +18,57 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="match_parent"
-            android:layout_height="228dp"
+            android:layout_width="279dp"
+            android:layout_height="199dp"
             android:src="@drawable/ic_launcher" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/type_text"
+            android:layout_width="118dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.43"
+            android:ems="10" />
+
+        <EditText
+            android:id="@+id/value_text"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.27"
+            android:ems="10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" >
+
+        <Button
+            android:id="@+id/prev_button"
+            android:layout_width="82dp"
+            android:layout_height="33dp"
+            android:text="Prev" />
+
+        <Button
+            android:id="@+id/add_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:text="Add Tag" />
+
+        <Button
+            android:id="@+id/delete_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="Del Tag" />
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:text="Next" />
     </LinearLayout>
 
     <LinearLayout
@@ -57,11 +76,11 @@
         android:layout_height="150dp"
         android:orientation="vertical" >
 
-        <ExpandableListView
-            android:id="@+id/expandableListView1"
+        <ListView
+            android:id="@+id/tags_list"
             android:layout_width="wrap_content"
-            android:layout_height="164dp" >
-        </ExpandableListView>
+            android:layout_height="178dp" >
+        </ListView>
 
     </LinearLayout>
 
