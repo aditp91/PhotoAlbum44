@@ -28,7 +28,8 @@ public class AlbumInfo extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_albuminfo);
-
+		
+		myList = MainActivity.myList;
 		this.selectedAlbum = MainActivity.selectedAlbum;
 
 		TextView myTextView = (TextView) findViewById(R.id.album_name);
@@ -55,6 +56,16 @@ public class AlbumInfo extends Activity{
 		addPhoto=(Button) findViewById(R.id.add_photo);
 		addPhoto.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+
+//				text1 = (EditText) findViewById(R.id.editText1);
+//				String getText1 = text1.getText().toString();
+//				text2 = (EditText) findViewById(R.id.editText2);
+//				String getText2 = text2.getText().toString();
+//				Photo p = new Photo(getText1, getText2);
+//				
+//				myList.addPhoto(selectedAlbum, p);
+//				adapter.notifyDataSetChanged();
+
 //				text1 = (EditText) findViewById(R.id.editText1);
 //				String getText1 = text1.getText().toString();
 //				text2 = (EditText) findViewById(R.id.editText2);
@@ -68,6 +79,7 @@ public class AlbumInfo extends Activity{
 //				myList.addPhoto(selectedAlbum, p);
 //				adapter.notifyDataSetChanged();
 				
+
 			}
 		});
 		

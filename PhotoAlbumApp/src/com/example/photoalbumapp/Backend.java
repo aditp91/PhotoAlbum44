@@ -1,5 +1,6 @@
 package com.example.photoalbumapp; 
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,7 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
 import android.os.Environment;
 
 /** @author Adithya Pothuri, Geetha Srinivasan */
@@ -38,7 +38,9 @@ public class Backend {
 		return null;
 	}
 
+
 	public User addUser(User u) throws IOException {
+
 		/* Serialize an object during logout so get user from userlist*/
 		//System.out.println("user name is  : " + u.getId());
 
@@ -46,6 +48,7 @@ public class Backend {
 		File file = new File("users/myuser.ser");
 		FileOutputStream fw = new FileOutputStream(file);
 		
+
 		ObjectOutputStream fileOut = new ObjectOutputStream(fw);
 		fileOut.writeObject(u);
 		fileOut.close();

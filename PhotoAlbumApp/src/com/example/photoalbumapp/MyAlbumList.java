@@ -24,7 +24,6 @@ public class MyAlbumList {
 		this.user = userGuy;
 		albums = new ArrayList<Album>();
 		albums = user.getUserAlbums();
-		//maxId = -1;
 	}
 
 	public ArrayList<Album> getAlbums() {
@@ -40,15 +39,9 @@ public class MyAlbumList {
 		if (name == null) {
 			throw new IllegalArgumentException("Name is mandatory");
 		}
-		// set id to next available
-		//maxId++;
-
 		// create album object
 		Album album = new Album(name);
 		albums.add(album);
-
-		// write through
-		//store();
 
 	}
 	public void deleteAlbum(Album a) {
@@ -56,14 +49,8 @@ public class MyAlbumList {
 		if (a.getName() == null) {
 			throw new IllegalArgumentException("Name is mandatory");
 		}
-		// set id to next available
-		//maxId++;
-
 		//delete album object
 		albums.remove(a);
-
-		// write through
-		//store();
 
 	}
 
@@ -72,14 +59,10 @@ public class MyAlbumList {
 		if (a.getName() == null) {
 			throw new IllegalArgumentException("Name is mandatory");
 		}
-		// set id to next available
-		//maxId++;
 
 		//delete album object
 		a.deletePhoto(p);
 
-		// write through
-		//store();
 
 	}
 	public void addPhoto(Album a, Photo p) {
@@ -87,14 +70,7 @@ public class MyAlbumList {
 		if (a.getName() == null) {
 			throw new IllegalArgumentException("Name is mandatory");
 		}
-		// set id to next available
-		//maxId++;
-
 		a.setPhotos(p);
-
-		// write through
-		//store();
-
 	}
 	//
 	//	public int getPos(Album album) {

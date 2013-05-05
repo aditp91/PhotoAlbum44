@@ -19,10 +19,11 @@ public class MainActivity extends FragmentActivity{
 
 	public Button viewAlbum, renameAlbum, createAlbum, deleteAlbum;
 	public EditText text;
-	
+
 	public User user;
 	public Backend backend;
-	public MyAlbumList myList;
+	public static MyAlbumList myList;
+
 	public static Album selectedAlbum;
 	
 	@Override
@@ -34,6 +35,7 @@ public class MainActivity extends FragmentActivity{
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
+
 //		try {
 //			backend = new Backend();
 //			user = new User("username", "first last");
@@ -44,6 +46,7 @@ public class MainActivity extends FragmentActivity{
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
+
 
 		user = new User("username", "first last");
 		myList = new MyAlbumList(user);

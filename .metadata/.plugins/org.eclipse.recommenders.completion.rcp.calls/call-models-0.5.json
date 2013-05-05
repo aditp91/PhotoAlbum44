@@ -13,5 +13,10 @@
     "location": "/Users/geethasrini/Documents/Android_PhotoAlbum44/PhotoAlbumApp/gen",
     "status": "UNRESOLVED",
     "error": "No class path info available for \u0027/Users/geethasrini/Documents/Android_PhotoAlbum44/PhotoAlbumApp/gen\u0027. Skipped."
+  },
+  "/Users/geethasrini/Documents/Android_PhotoAlbum44/PhotoAlbumApp/libs/android-support-v4.jar": {
+    "location": "/Users/geethasrini/Documents/Android_PhotoAlbum44/PhotoAlbumApp/libs/android-support-v4.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027/Users/geethasrini/Documents/Android_PhotoAlbum44/PhotoAlbumApp/libs/android-support-v4.jar\u0027. Neither fingerprint \u002748c94ae70fa65718b382098237806a5909bb096e\u0027 nor symbolic name \u0027android-support-v4\u0027 are known."
   }
 }
