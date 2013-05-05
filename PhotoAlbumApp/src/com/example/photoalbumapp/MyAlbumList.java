@@ -75,7 +75,8 @@ public class MyAlbumList {
 	
 	public ArrayList<Photo> getPhotosByTag(ArrayList<Tag> inputTags){
 		ArrayList<Photo> outputPhotos = new ArrayList<Photo>();
-		//System.out.print("photos for user " + user.getId() + " with the following tags -\n");
+		System.out.print("photos for user " + user.getId() + " with the following tags -\n");
+		System.out.println("inputTags.size = " + inputTags.size());
 		for (Tag tag : inputTags) {
 			//if(tag.getTagValue().equals(",")) { continue;}
 			//System.out.print(tag.getTagType() + ":" + tag.getTagValue() + " :\n");
