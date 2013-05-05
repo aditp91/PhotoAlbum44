@@ -17,8 +17,8 @@ public class Backend {
 		/* Deserialize an object */
 
 		User user=null; 
-		String pathname = "../data/users/" + userID + ".ser";
-		String location = "../data/users/";
+		String pathname = "data/users/" + userID + ".ser";
+		String location = "data/users/";
 		
 		File dir = new File(location);
 		
@@ -36,41 +36,36 @@ public class Backend {
 
 		return null;
 	}
-
-	public User addUser(User u) throws FileNotFoundException, IOException {
+	
+	public User addUser(User u) {
+		
 		/* Serialize an object during logout so get user from userlist*/
-		String pathname = "../data/users/" + u.getId() + ".ser";
-		String location = "../data/users/";
-
-		File dir = new File(location);
-		//if theres no files in data
-		if(dir.listFiles().length == 0){
-			FileOutputStream fw = new FileOutputStream(pathname);
+		System.out.println("user name is  : " + u.getId());
+		//String pathname = "users/" + u.getId() + ".ser";
+		
+		FileOutputStream fw;
+		try {
+			fw = new FileOutputStream("../users/123456.ser");
 			ObjectOutputStream fileOut = new ObjectOutputStream(fw);
 			fileOut.writeObject(u);
 			fileOut.close();
 			fw.close();
-			return u;
+		} catch (FileNotFoundException e) {
+			//System.exit(0);
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		for (File file : dir.listFiles()) {
-			if (file.getName().startsWith(u.getId()) && file.getName().endsWith((".ser"))) {
-				return null;
-			}
-			else{ //file does not exit
-				FileOutputStream fw = new FileOutputStream(pathname);
-				ObjectOutputStream fileOut = new ObjectOutputStream(fw);
-				fileOut.writeObject(u);
-				fileOut.close();
-				fw.close();
-			}
-		}
-
+		
+		
 		return u;
 	}
+
+	
 	public void writeUser(User u) throws FileNotFoundException, IOException {
 		/* Serialize an object during logout so get user from userlist*/
-		String pathname = "../data/users/" + u.getId() + ".ser";
-		String location = "../data/users/";
+		String pathname = "data/users/" + u.getId() + ".ser";
+		String location = "data/users/";
 
 		File dir = new File(location);
 		//if theres no files in data
@@ -101,7 +96,7 @@ public class Backend {
 	}
 
 	public boolean deleteUser(String userID) throws IOException, ClassNotFoundException {
-		String location = "../data/users/";
+		String location = "data/users/";
 		File dir = new File(location);
 
 		for (File file : dir.listFiles()) {
@@ -117,7 +112,7 @@ public class Backend {
 	
 	public ArrayList<String> getUserList () {
 
-		String location = "../data/users/";
+		String location = "data/users/";
 		File dir = new File(location);
 		ArrayList <String> users = new ArrayList<String>();
 

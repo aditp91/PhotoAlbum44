@@ -10,5 +10,11 @@
     	<item>Spring Break Vacation</item>
     	<item>South Beach + Key West</item>
     </array>
+    
+    <array name="photo_array">
+    	<item>NYC.jpeg</item>
+    	<item>SpringBreak.jpeg</item>
+    	<item>Beach.jpeg</item>
+    </array>
 
 </resources>

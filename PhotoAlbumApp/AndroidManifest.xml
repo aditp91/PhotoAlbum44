@@ -22,11 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         <activity
+        <activity
             android:name="com.example.photoalbumapp.AlbumInfo"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="com.example.photoalbumapp.AlbumInfo" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+         <activity
+            android:name="com.example.photoalbumapp.PhotoInfo"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.example.photoalbumapp.PhotoInfo" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

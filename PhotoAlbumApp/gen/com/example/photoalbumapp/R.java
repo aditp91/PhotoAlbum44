@@ -12,6 +12,7 @@ public final class R {
         /**   Initial list of albums 
          */
         public static final int album_array=0x7f060000;
+        public static final int photo_array=0x7f060001;
     }
     public static final class attr {
     }
@@ -28,22 +29,27 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout2=0x7f090000;
-        public static final int add_photo=0x7f090002;
-        public static final int album_list=0x7f09000b;
+        public static final int add_photo=0x7f090004;
+        public static final int album_list=0x7f09000e;
         public static final int album_name=0x7f090001;
-        public static final int create=0x7f090007;
-        public static final int delete=0x7f090009;
-        public static final int display_photo=0x7f090004;
-        public static final int menu_settings=0x7f09000c;
-        public static final int open_view=0x7f09000a;
-        public static final int pager=0x7f090006;
-        public static final int photo_list=0x7f090005;
-        public static final int remove_photo=0x7f090003;
-        public static final int rename=0x7f090008;
+        public static final int create=0x7f09000a;
+        public static final int delete=0x7f09000c;
+        public static final int display_photo=0x7f090006;
+        public static final int editText=0x7f090009;
+        public static final int editText1=0x7f090002;
+        public static final int editText2=0x7f090003;
+        public static final int menu_settings=0x7f090010;
+        public static final int open_view=0x7f09000d;
+        public static final int pager=0x7f090008;
+        public static final int photo_list=0x7f090007;
+        public static final int photoname=0x7f09000f;
+        public static final int remove_photo=0x7f090005;
+        public static final int rename=0x7f09000b;
     }
     public static final class layout {
         public static final int activity_albuminfo=0x7f030000;
         public static final int activity_main=0x7f030001;
+        public static final int activity_photoinfo=0x7f030002;
     }
     public static final class menu {
         public static final int activity_main=0x7f080000;

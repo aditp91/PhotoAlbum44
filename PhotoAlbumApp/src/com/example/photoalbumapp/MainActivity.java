@@ -1,5 +1,8 @@
 package com.example.photoalbumapp;
 
+import java.io.IOException;
+import java.io.Serializable;
+
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,15 +13,19 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements Serializable{
 
-	public Button viewAlbum;
+	public Button viewAlbum, renameAlbum, createAlbum, deleteAlbum;
+	public EditText text;
 	
 	public MyAlbumList myList;
 	public static Album selectedAlbum;
-
+	public User user;
+	public static Backend backend;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,37 +34,82 @@ public class MainActivity extends FragmentActivity {
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		try {
+			backend = new Backend();
+			user = new User("username", "first last");
+			backend.addUser(user);
+			user = backend.readUser("username");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		/* set up the list view to hold route names */
 		final ListView listView = (ListView)findViewById(R.id.album_list);
-
-		// get all the initial album names from the strings.xml
-		String[] albums = getResources().getStringArray(R.array.album_array);
-		myList = MyAlbumList.getInstance();
-
-		// break each song into name and artist
-		for (int i=0; i < albums.length; i++) {
-			myList.add(albums[i]);
-		}
-
+		
+		myList = new MyAlbumList(user);
+		
 		// now display it onto the app
-		ArrayAdapter<Album> adapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, myList.getAlbums());
+		final ArrayAdapter<Album> adapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, myList.getAlbums());
 		listView.setAdapter(adapter);
 
+		/*Set text instructions*/
+		//text.setText("Enter Album Name");
+		
 		adapter.notifyDataSetChanged();
+		/*Get selected Album*/
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> a, View v , int position, long id) {
 				selectedAlbum = (Album) listView.getItemAtPosition(position);
 			}
 		});
 
-		/* when button is clicked, open new activity */
+		/* when open button is clicked, open new activity */
 		viewAlbum=(Button) findViewById(R.id.open_view);
 		viewAlbum.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				/* open a new 'album view' activity then show its contents.. */
 				Intent i = new Intent(MainActivity.this, AlbumInfo.class);
 				startActivity(i);
+			}
+		});
+		
+		/* when rename button is clicked, rename Album */
+		renameAlbum=(Button) findViewById(R.id.rename);
+		renameAlbum.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				text = (EditText) findViewById(R.id.editText);
+				String getText = text.getText().toString();
+				selectedAlbum.setName(getText);
+				//text.setText("");
+				adapter.notifyDataSetChanged();
+			}
+		});
+		
+		/* when create button is clicked, rename Album */
+		createAlbum=(Button) findViewById(R.id.create);
+		createAlbum.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				text = (EditText) findViewById(R.id.editText);
+				String getText = text.getText().toString();
+				myList.addAlbum(getText);
+				//text.setText("");
+				adapter.notifyDataSetChanged();
+			}
+		});
+		
+		/* when delete button is clicked, delete Album */
+		deleteAlbum=(Button) findViewById(R.id.delete);
+		deleteAlbum.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				for(int i=0; i<myList.getAlbums().size(); i++){
+					if(myList.getAlbums().get(i).getName().equals(selectedAlbum.getName())){
+						myList.deleteAlbum(selectedAlbum);
+						adapter.notifyDataSetChanged();
+					}
+				}
 			}
 		});
 	}
