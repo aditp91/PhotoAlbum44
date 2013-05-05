@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /** @author Adithya Pothuri, Geetha Srinivasan */
-@SuppressWarnings("serial")
 public class Photo implements Serializable
 {
 	/*Variables*/

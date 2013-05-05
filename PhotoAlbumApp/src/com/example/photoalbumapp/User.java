@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /** @author Adithya Pothuri, Geetha Srinivasan */
-@SuppressWarnings("serial")
 public class User implements Serializable {
 	
 	/*Variables*/

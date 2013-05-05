@@ -1,7 +1,6 @@
 package com.example.photoalbumapp;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 import android.app.ActionBar;
 import android.content.Intent;
@@ -16,15 +15,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class MainActivity extends FragmentActivity implements Serializable{
+public class MainActivity extends FragmentActivity{
 
 	public Button viewAlbum, renameAlbum, createAlbum, deleteAlbum;
 	public EditText text;
 	
+	public User user;
+	public Backend backend;
 	public MyAlbumList myList;
 	public static Album selectedAlbum;
-	public User user;
-	public static Backend backend;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +34,22 @@ public class MainActivity extends FragmentActivity implements Serializable{
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
-		try {
-			backend = new Backend();
-			user = new User("username", "first last");
-			backend.addUser(user);
-			user = backend.readUser("username");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			backend = new Backend();
+//			user = new User("username", "first last");
+//			backend.addUser(user);
+//			user = backend.readUser("username");
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 
+		user = new User("username", "first last");
+		myList = new MyAlbumList(user);
+		
 		/* set up the list view to hold route names */
 		final ListView listView = (ListView)findViewById(R.id.album_list);
-		
-		myList = new MyAlbumList(user);
 		
 		// now display it onto the app
 		final ArrayAdapter<Album> adapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, myList.getAlbums());

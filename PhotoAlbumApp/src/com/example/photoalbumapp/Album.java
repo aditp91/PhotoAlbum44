@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /** @author Adithya Pothuri, Geetha Srinivasan */
-@SuppressWarnings("serial")
 public class Album implements Serializable {
 	
+	private static final long serialVersionUID = 968836419181703039L;
 	/*Variables*/
 	private String name;
     private int numPhotos;

@@ -9,6 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import android.os.Environment;
+
 /** @author Adithya Pothuri, Geetha Srinivasan */
 
 public class Backend {
@@ -19,9 +21,9 @@ public class Backend {
 		User user=null; 
 		String pathname = "data/users/" + userID + ".ser";
 		String location = "data/users/";
-		
+
 		File dir = new File(location);
-		
+
 		for(File file : dir.listFiles())
 		{
 			if (file.getName().startsWith(userID) && file.getName().endsWith((".ser"))) {
@@ -33,35 +35,27 @@ public class Backend {
 				return user;
 			}
 		}
-
 		return null;
 	}
-	
-	public User addUser(User u) {
-		
+
+	public User addUser(User u) throws IOException {
 		/* Serialize an object during logout so get user from userlist*/
-		System.out.println("user name is  : " + u.getId());
+		//System.out.println("user name is  : " + u.getId());
+
 		//String pathname = "users/" + u.getId() + ".ser";
+		File file = new File("users/myuser.ser");
+		FileOutputStream fw = new FileOutputStream(file);
 		
-		FileOutputStream fw;
-		try {
-			fw = new FileOutputStream("../users/123456.ser");
-			ObjectOutputStream fileOut = new ObjectOutputStream(fw);
-			fileOut.writeObject(u);
-			fileOut.close();
-			fw.close();
-		} catch (FileNotFoundException e) {
-			//System.exit(0);
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
+		ObjectOutputStream fileOut = new ObjectOutputStream(fw);
+		fileOut.writeObject(u);
+		fileOut.close();
+		fw.close();
+
+
 		return u;
 	}
 
-	
+
 	public void writeUser(User u) throws FileNotFoundException, IOException {
 		/* Serialize an object during logout so get user from userlist*/
 		String pathname = "data/users/" + u.getId() + ".ser";
@@ -109,7 +103,7 @@ public class Backend {
 		return false;
 
 	}
-	
+
 	public ArrayList<String> getUserList () {
 
 		String location = "data/users/";
@@ -117,7 +111,7 @@ public class Backend {
 		ArrayList <String> users = new ArrayList<String>();
 
 		for (File file : dir.listFiles()) {
-			
+
 			//Retrieve all files
 			users.add(file.getName().substring(0, file.getName().indexOf(".")));
 		}

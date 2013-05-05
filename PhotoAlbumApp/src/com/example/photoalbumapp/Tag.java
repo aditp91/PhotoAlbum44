@@ -2,7 +2,6 @@ package com.example.photoalbumapp;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 /** @author Adithya Pothuri, Geetha Srinivasan */
 public class Tag implements Serializable{
 	

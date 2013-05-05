@@ -1,6 +1,5 @@
 package com.example.photoalbumapp;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -8,12 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class AlbumInfo extends Activity{
 
@@ -51,17 +51,23 @@ public class AlbumInfo extends Activity{
 			}
 		});
 		
-	   /* when remove button is clicked, remove Photo */
+	   /* when add button is clicked, add Photo */
 		addPhoto=(Button) findViewById(R.id.add_photo);
 		addPhoto.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				text1 = (EditText) findViewById(R.id.editText1);
-				String getText1 = text1.getText().toString();
-				text2 = (EditText) findViewById(R.id.editText2);
-				String getText2 = text2.getText().toString();
-				Photo p = new Photo(getText1, getText2);
-				myList.addPhoto(selectedAlbum, p);
-				adapter.notifyDataSetChanged();
+//				text1 = (EditText) findViewById(R.id.editText1);
+//				String getText1 = text1.getText().toString();
+//				text2 = (EditText) findViewById(R.id.editText2);
+//				String getText2 = text2.getText().toString();
+				
+				Intent i = new Intent(Intent.ACTION_PICK,
+						android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+				final int SELECT_IMAGE = 1234;
+				startActivityForResult(Intent.createChooser(i, "Choose Photo To Add"),SELECT_IMAGE);
+//				Photo p = new Photo(getText1, "");
+//				myList.addPhoto(selectedAlbum, p);
+//				adapter.notifyDataSetChanged();
+				
 			}
 		});
 		
