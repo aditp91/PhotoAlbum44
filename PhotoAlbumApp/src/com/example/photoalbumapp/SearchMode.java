@@ -22,7 +22,7 @@ public class SearchMode extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_searchmode);
 		
-		myList = MainActivity.myList;
+		myList = MainActivity.myList; 
 		photo_List = new ArrayList<Photo>();
 		valueField = (EditText) findViewById(R.id.tag_value_text);
 
