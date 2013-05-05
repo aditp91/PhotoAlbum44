@@ -41,6 +41,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.photoalbumapp.SearchMode"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.example.photoalbumapp.SearchMode" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         
     </application>
 

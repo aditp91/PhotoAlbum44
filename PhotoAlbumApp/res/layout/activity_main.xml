@@ -7,14 +7,29 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <EditText
-        android:id="@+id/editText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" >
+        android:layout_height="wrap_content" >
 
-        <requestFocus />
-    </EditText>
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Album Name:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,11 +56,23 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/open_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Open" />
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/open_view"
+            android:layout_width="163dp"
+            android:layout_height="wrap_content"
+            android:text="Open" />
+
+        <Button
+            android:id="@+id/search_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search Mode" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

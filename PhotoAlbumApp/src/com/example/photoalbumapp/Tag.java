@@ -28,4 +28,9 @@ public class Tag implements Serializable{
 	public void setTagType(String tagType) {
 		this.tagType = tagType;
 	}
+	
+	public String toString() {
+		String str = this.tagType + ": " + this.tagValue;
+		return str;
+	}
 }

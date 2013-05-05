@@ -22,7 +22,7 @@ import android.widget.TextView;
 public class AlbumInfo extends Activity{
 
 	public Album selectedAlbum;
-	public Button addPhoto, removePhoto, displayPhoto; 
+	public Button addPhoto, removePhoto, displayPhoto, movePhoto; 
 	public EditText text1, text2;
 	public ArrayList<Photo> photoList;
 	public static Photo selectedPhoto;
@@ -87,6 +87,19 @@ public class AlbumInfo extends Activity{
 				startActivityForResult(Intent.createChooser(i, "Choose Photo To Add"),SELECT_IMAGE);
 			}
 		});
+		
+		/* when move button is clicked, move Photo */
+		movePhoto=(Button) findViewById(R.id.move_photo);
+		movePhoto.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				//MOVE PHOTO IMPLEMENTATION HERE
+				
+				
+				
+				
+			}
+		});
+		
 		
 		
 	} 

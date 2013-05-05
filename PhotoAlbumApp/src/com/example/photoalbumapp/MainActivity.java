@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 public class MainActivity extends FragmentActivity{
 
-	public Button viewAlbum, renameAlbum, createAlbum, deleteAlbum;
+	public Button viewAlbum, renameAlbum, createAlbum, deleteAlbum, searchButton;
 	public EditText text;
 	
 	public User user;
@@ -108,6 +108,16 @@ public class MainActivity extends FragmentActivity{
 						adapter.notifyDataSetChanged();
 					}
 				}
+			}
+		});
+		
+		/* Search Mode button pressed*/
+		searchButton = (Button) findViewById(R.id.search_mode);
+		searchButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				//go into search activity
+				Intent i = new Intent(MainActivity.this, SearchMode.class);
+				startActivity(i);
 			}
 		});
 	}

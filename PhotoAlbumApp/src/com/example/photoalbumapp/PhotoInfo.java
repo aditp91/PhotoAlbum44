@@ -71,6 +71,7 @@ public class PhotoInfo extends Activity{
 				String value = valueText.getText().toString();
 				
 				selectedPhoto.addTag(type, value);
+				tagList = selectedPhoto.getTags();
 				adapter.notifyDataSetChanged();
 			}
 		});

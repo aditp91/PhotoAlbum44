@@ -72,75 +72,36 @@ public class MyAlbumList {
 		}
 		a.setPhotos(p);
 	}
-	//
-	//	public int getPos(Album album) {
-	//		if (albums.size() == 0) {
-	//			return -1;
-	//		}
-	//
-	//		// search in array list for name match, then id match
-	//		int lo=0, hi=albums.size()-1;
-	//		
-	//		while (lo <= hi) {
-	//			int mid = (lo+hi)/2;
-	//			Album lalbum = albums.get(mid);
-	//			int c = album.compareTo(lalbum);
-	//			if (c == 0) {  // need to compare id
-	//				if (album.id == lalbum.id) {
-	//					return mid;
-	//				}
-	//				// check left
-	//				int i=mid-1;
-	//				while (i >= 0) {
-	//					lalbum = albums.get(i);
-	//					if (album.compareTo(lalbum) == 0 && album.id == lalbum.id) {
-	//						return i;
-	//					}
-	//					i--;
-	//				}
-	//				// check right
-	//				i = mid+1;
-	//				while (i < albums.size()) {
-	//					lalbum = albums.get(i);
-	//					if (album.compareTo(lalbum) == 0 && album.id == lalbum.id) {
-	//						return i;
-	//					}
-	//					i++;
-	//				}
-	//				return -1;
-	//			}
-	//			if (c < 0) {
-	//				hi = mid-1;
-	//			} else {
-	//				lo = mid+1;
-	//			}
-	//		}
-	//		return -1;
-	//	}
-	//
-	//
-	//	public void load() throws IOException {
-	//
-	//	}
-	//
-	//	public ArrayList<Album> remove(Album album) throws NoSuchElementException {
-	//		int pos = getPos(album);
-	//		if (pos == -1) {
-	//			throw new NoSuchElementException();
-	//		}
-	//		albums.remove(pos);
-	//		return albums;
-	//	}
-	//
-	//	public ArrayList<Album> update(Album album) throws NoSuchElementException {
-	//		// since name could be updated, best to sequentially search on id
-	//		for (int i=0; i < albums.size(); i++) {
-	//			if (albums.get(i).id == album.id) {
-	//				albums.set(i, album);
-	//				return albums;
-	//			}
-	//		}
-	//		throw new NoSuchElementException();
-	//	}
+	
+	public ArrayList<Photo> getPhotosByTag(ArrayList<Tag> inputTags){
+		ArrayList<Photo> outputPhotos = new ArrayList<Photo>();
+		//System.out.print("photos for user " + user.getId() + " with the following tags -\n");
+		for (Tag tag : inputTags) {
+			//if(tag.getTagValue().equals(",")) { continue;}
+			//System.out.print(tag.getTagType() + ":" + tag.getTagValue() + " :\n");
+			for (Album a : user.getUserAlbums()) {
+				for (Photo p : a.getPhotos()) {
+					for (Tag t : p.getTags()) {
+						if (tag.getTagType() == null && tag.getTagValue().equals(t.getTagValue())) {
+							//outputPhotos.add(p);
+							if(!outputPhotos.contains(p))
+								outputPhotos.add(p);
+							//System.out.println(p.getCaption() + " - album: " + a.getName()
+									//+ "- date: " + p.getTime()); 
+						}
+						else if (tag.getTagType() != null && tag.getTagType().equals(t.getTagType()) && tag.getTagValue().equals(t.getTagValue())) {
+							//outputPhotos.add(p);
+							if(!outputPhotos.contains(p))
+								outputPhotos.add(p);
+							//System.out.println(p.getCaption() + " - album: " + a.getName()
+									//+ "- date: " + p.getTime()); 
+						}
+					}
+				}
+			}
+		}
+		System.out.println("outputPhotos w/ given tags = " + outputPhotos.size());
+		return outputPhotos;
+	}
 
 }

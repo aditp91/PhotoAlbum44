@@ -9,20 +9,21 @@
     <TextView
         android:id="@+id/album_name"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:textSize="20dp"
-        android:text="TextView" />
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp" >
+        android:layout_height="wrap_content" >
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="118dp"
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.43"
-            android:ems="10" />
+            android:layout_weight="0.27"
+            android:text="Move To Album:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/editText2"
@@ -41,20 +42,22 @@
             android:id="@+id/add_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0.08"
             android:text="Add" />
 
         <Button
             android:id="@+id/remove_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0.04"
             android:text="Remove" />
 
         <Button
-            android:id="@+id/display_photo"
+            android:id="@+id/move_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.24"
-            android:text="Display" />
+            android:layout_weight="0.11"
+            android:text="Move" />
     </LinearLayout>
 
     <LinearLayout
@@ -63,16 +66,21 @@
         android:layout_weight="0.48"
         android:orientation="vertical" >
 
-        <!-- Layout for album list -->
-
         <ListView
             android:id="@+id/photo_list"
-            android:layout_width="278dp"
+            android:layout_width="wrap_content"
             android:layout_height="302dp"
             android:divider="@color/White"
             android:dividerHeight="1dp"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+        </ListView>
 
+        <Button
+            android:id="@+id/display_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.95"
+            android:text="Display" />
     </LinearLayout>
 
 </LinearLayout>
