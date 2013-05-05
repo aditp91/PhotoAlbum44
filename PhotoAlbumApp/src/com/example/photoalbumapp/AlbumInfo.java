@@ -1,17 +1,21 @@
 package com.example.photoalbumapp;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,7 +28,8 @@ public class AlbumInfo extends Activity{
 	public static Photo selectedPhoto;
 	public MyAlbumList myList;
 	final int SELECT_IMAGE = 1234;
-
+	public static ImageView imageView;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -82,19 +87,38 @@ public class AlbumInfo extends Activity{
 				startActivityForResult(Intent.createChooser(i, "Choose Photo To Add"),SELECT_IMAGE);
 			}
 		});
+		
+		
 	} 
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == SELECT_IMAGE)
+		final ListView listView = (ListView)findViewById(R.id.photo_list);
+		final ArrayAdapter<Photo> adapter = new ArrayAdapter<Photo>(this, android.R.layout.simple_list_item_1, photoList);
+		listView.setAdapter(adapter);
+		if (requestCode == SELECT_IMAGE){
 			if (resultCode == Activity.RESULT_OK) {
 				Uri selectedImage = data.getData();
-				System.out.println("path of selected image is: " + selectedImage.getPath());
-				
-//				Photo p = new Photo(getText1, "");
-//				myList.addPhoto(selectedAlbum, p);
-//				adapter.notifyDataSetChanged();
+				System.out.println("User Info of selected image is: " + selectedImage.getPath());
+				String realPath = getRealPathFromURI(selectedImage);
+				File file = new File(realPath);
+				System.out.println("file Absolute Path: " + realPath);
+				/*Set the image to the current photo selected to display in slideshow*/
+				/*Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+			    imageView=(ImageView)findViewById(R.id.imageView);
+				imageView.setImageBitmap(myBitmap);*/
+				Photo p = new Photo(file.getName(), "");
+				myList.addPhoto(selectedAlbum, p);
+				adapter.notifyDataSetChanged();
 			}
+		}
 	}
+	
+	public String getRealPathFromURI(Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
 }

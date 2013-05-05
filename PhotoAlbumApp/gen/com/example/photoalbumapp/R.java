@@ -40,7 +40,7 @@ public final class R {
         public static final int editText=0x7f090009;
         public static final int editText1=0x7f090002;
         public static final int editText2=0x7f090003;
-        public static final int imageView1=0x7f090010;
+        public static final int imageView=0x7f090010;
         public static final int menu_settings=0x7f090018;
         public static final int next_button=0x7f090016;
         public static final int open_view=0x7f09000d;

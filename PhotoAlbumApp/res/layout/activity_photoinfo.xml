@@ -17,7 +17,7 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/imageView"
             android:layout_width="279dp"
             android:layout_height="199dp"
             android:src="@drawable/ic_launcher" />
