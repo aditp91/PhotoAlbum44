@@ -15,7 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class AlbumInfo extends Activity implements Serializable{
+public class AlbumInfo extends Activity{
 
 	public Album selectedAlbum;
 	public Button addPhoto, removePhoto, displayPhoto; 
