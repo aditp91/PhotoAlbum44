@@ -49,9 +49,10 @@ public class MainActivity extends FragmentActivity{
 		// now display it onto the app
 		final ArrayAdapter<Album> adapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, myList.getAlbums());
 		listView.setAdapter(adapter);
-		myList.addAlbum(backend.album.getName());
-		/*Set text instructions*/
-		//text.setText("Enter Album Name");
+		
+		for(Album a: backend.albumList){
+			myList.addAlbum(a.getName());
+		}
 		
 		adapter.notifyDataSetChanged();
 		/*Get selected Album*/
