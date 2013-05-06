@@ -45,10 +45,11 @@ public class Backend {
 		//System.out.println("user name is  : " + u.getId());
 
 		//String pathname = "users/" + u.getId() + ".ser";
-		File file = new File("users/myuser.ser");
-		FileOutputStream fw = new FileOutputStream(file);
+		String location = "data/users/";
+		//File file = new File("users/myuser.ser");
+		File dir = new File(location);
+		FileOutputStream fw = new FileOutputStream(dir);
 		
-
 		ObjectOutputStream fileOut = new ObjectOutputStream(fw);
 		fileOut.writeObject(u);
 		fileOut.close();

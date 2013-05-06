@@ -1,5 +1,7 @@
 package com.example.photoalbumapp;
 
+import java.io.IOException;
+
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,16 +34,16 @@ public class MainActivity extends FragmentActivity{
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
-//		try {
-//			backend = new Backend();
-//			user = new User("username", "first last");
-//			backend.addUser(user);
-//			user = backend.readUser("username");
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			backend = new Backend();
+			user = new User("username", "first last");
+			backend.addUser(user);
+			user = backend.readUser("username");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		user = new User("username", "first last");
 		myList = new MyAlbumList(user);

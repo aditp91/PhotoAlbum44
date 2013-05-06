@@ -62,7 +62,7 @@
         <Button
             android:id="@+id/prev_button"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="match_parent"
             android:text="Prev" />
 
         <Button
@@ -80,7 +80,7 @@
         <Button
             android:id="@+id/next_button"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="wrap_content"
             android:text="Next" />
     </LinearLayout>
 

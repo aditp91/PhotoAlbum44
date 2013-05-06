@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -52,12 +54,17 @@ public class AlbumInfo extends Activity{
 		// now display it onto the app
 		final ArrayAdapter<Photo> adapter = new ArrayAdapter<Photo>(this, android.R.layout.simple_list_item_1, photoList);
 		listView.setAdapter(adapter);
-
+		
 		adapter.notifyDataSetChanged();
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> a, View v , int position, long id) {
 				selectedPhoto = (Photo) listView.getItemAtPosition(position);
-				currpos = position;
+				/*Add Thumbnail*/
+				File file = new File(selectedPhoto.getRealPath());
+				ImageView ImgView = (ImageView)findViewById(R.id.thumbnail);
+				Bitmap bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
+				ImgView.setImageBitmap(bmp);
+		        currpos = position;
 			}
 		});
 		
