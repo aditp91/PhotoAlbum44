@@ -15,4 +15,5 @@
 <fullyQualifiedTypeName name="android.graphics.Bitmap"/>
 <fullyQualifiedTypeName name="android.graphics.BitmapFactory"/>
 <fullyQualifiedTypeName name="android.os.Environment"/>
+<fullyQualifiedTypeName name="com.example.photoalbumapp.AlbumInfo"/>
 </qualifiedTypeNameHistroy>

@@ -23,12 +23,14 @@ public class AlbumInfo extends Activity{
 
 	public Album selectedAlbum;
 	public Button addPhoto, removePhoto, displayPhoto, movePhoto; 
-	public EditText text1, text2;
+	public EditText text1, text2, text;
 	public ArrayList<Photo> photoList;
 	public static Photo selectedPhoto;
 	public MyAlbumList myList;
 	final int SELECT_IMAGE = 1234;
-	public static String realPath;
+	public static String currPath;
+	public static int currpos;
+	public static ListView listView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class AlbumInfo extends Activity{
 		myTextView.setText("Album name: " + selectedAlbum);
 
 		/* set up the list view to hold route names */
-		final ListView listView = (ListView)findViewById(R.id.photo_list);
+		listView = (ListView)findViewById(R.id.photo_list);
 
 		// get the photos from the selected album
 		photoList = selectedAlbum.getPhotos();
@@ -55,6 +57,7 @@ public class AlbumInfo extends Activity{
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> a, View v , int position, long id) {
 				selectedPhoto = (Photo) listView.getItemAtPosition(position);
+				currpos = position;
 			}
 		});
 		
@@ -63,6 +66,11 @@ public class AlbumInfo extends Activity{
 		removePhoto.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				myList.deletePhoto(selectedAlbum, selectedPhoto);
+				photoList.clear();
+				for(Photo p: selectedAlbum.getPhotos()){
+					photoList.add(p);
+				}
+				listView.setAdapter(adapter);
 				adapter.notifyDataSetChanged();
 
 			}
@@ -73,8 +81,11 @@ public class AlbumInfo extends Activity{
 		displayPhoto.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				/*open new activity for slideshow*/
-				Intent j = new Intent(AlbumInfo.this, PhotoInfo.class);
-				startActivity(j);
+				if(selectedPhoto.getFileName() != null){
+					currPath = selectedPhoto.getRealPath();
+					Intent j = new Intent(AlbumInfo.this, PhotoInfo.class);
+					startActivity(j);
+				}
 			}
 		});
 
@@ -93,13 +104,30 @@ public class AlbumInfo extends Activity{
 		movePhoto.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				//MOVE PHOTO IMPLEMENTATION HERE
-				
-				
-				
-				
+				text = (EditText) findViewById(R.id.editText2);
+				String moveToAlbum = text.getText().toString();
+				//find new album and get the album object
+				Album getAlbum = null;
+				for(Album a: MainActivity.myList.getAlbums()){
+					if(a.getName().equals(moveToAlbum)){
+						getAlbum = a;
+					}
+				}
+				if(getAlbum != null){
+					//add photo to new album
+					getAlbum.setPhotos(selectedPhoto);
+					//delete photo from old album
+					selectedAlbum.deletePhoto(selectedPhoto);
+					photoList.clear();
+					for(Photo p: selectedAlbum.getPhotos()){
+						photoList.add(p);
+					}
+					listView.setAdapter(adapter);
+					adapter.notifyDataSetChanged();
+				}
 			}
-		});		
-	} 
+		});			
+	}
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -108,12 +136,20 @@ public class AlbumInfo extends Activity{
 		listView.setAdapter(adapter);
 		if (requestCode == SELECT_IMAGE){
 			if (resultCode == Activity.RESULT_OK) {
+				boolean isThere = false;
 				Uri selectedImage = data.getData();
-				realPath = getRealPathFromURI(selectedImage);
+				String realPath = getRealPathFromURI(selectedImage);
 				File file = new File(realPath);
 				Photo p = new Photo(file.getName(), realPath);
-				myList.addPhoto(selectedAlbum, p);
-				adapter.notifyDataSetChanged();
+				for(Photo photo: selectedAlbum.getPhotos()){
+					if(photo.getFileName().equals(file.getName())){
+						isThere = true;
+					}
+				}
+				if(isThere == false){
+					myList.addPhoto(selectedAlbum, p);
+					adapter.notifyDataSetChanged();
+				}
 			}
 		}
 	}

@@ -81,7 +81,6 @@ public class MainActivity extends FragmentActivity{
 				text = (EditText) findViewById(R.id.editText);
 				String getText = text.getText().toString();
 				selectedAlbum.setName(getText);
-				//text.setText("");
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -90,10 +89,16 @@ public class MainActivity extends FragmentActivity{
 		createAlbum=(Button) findViewById(R.id.create);
 		createAlbum.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+				boolean hasIt = false;
 				text = (EditText) findViewById(R.id.editText);
 				String getText = text.getText().toString();
-				myList.addAlbum(getText);
-				//text.setText("");
+				for(Album a: myList.getAlbums()){
+					if(a.getName().equals(getText)){
+						hasIt = true;
+					}
+				}
+				if(hasIt == false)
+					myList.addAlbum(getText);
 				adapter.notifyDataSetChanged();
 			}
 		});

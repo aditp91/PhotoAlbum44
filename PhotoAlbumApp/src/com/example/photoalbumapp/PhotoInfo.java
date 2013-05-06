@@ -26,6 +26,7 @@ public class PhotoInfo extends Activity{
 	public EditText typeText, valueText;
 	public ArrayList<Tag> tagList;
 	public Tag selectedTag;
+	public int currPos;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +36,14 @@ public class PhotoInfo extends Activity{
 		myList = MainActivity.myList;
 		this.selectedAlbum = MainActivity.selectedAlbum;
 		this.selectedPhoto = AlbumInfo.selectedPhoto;
+		this.currPos = AlbumInfo.currpos;
 		
 		TextView myTextView = (TextView) findViewById(R.id.photoname);
 		myTextView.setText("Photo name: " + selectedPhoto);
 	
 		/* Display the selectedPhoto onto the layout (large picture) */
 		/*Set the image to the current photo selected to display in slideshow*/
-		
-		File file = new File(AlbumInfo.realPath);
+		File file = new File(AlbumInfo.currPath);
 		ImageView ImgView = (ImageView)findViewById(R.id.view_image);
 		Bitmap bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
 		ImgView.setImageBitmap(bmp);
@@ -92,17 +93,38 @@ public class PhotoInfo extends Activity{
 		nextButton=(Button) findViewById(R.id.next_button);
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				// IMPLEMENT HERE
-				
-				adapter.notifyDataSetChanged();
+				Photo nextSelectedPhoto;
+				if(currPos+1<selectedAlbum.getNumPhotos()){
+					nextSelectedPhoto = (Photo) AlbumInfo.listView.getItemAtPosition(currPos+1);
+					/*Set the next image to the current photo selected to display in slideshow*/
+					File file = new File(nextSelectedPhoto.getRealPath());
+					ImageView ImgView = (ImageView)findViewById(R.id.view_image);
+					Bitmap bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
+					ImgView.setImageBitmap(bmp);
+					TextView myTextView = (TextView) findViewById(R.id.photoname);
+					myTextView.setText("Photo name: " + nextSelectedPhoto);
+					currPos = currPos+1;
+					adapter.notifyDataSetChanged();
+				}
 			}
 		});
 		
 		prevButton=(Button) findViewById(R.id.prev_button);
 		prevButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				
-				// IMPLEMENT HERE
+				Photo prevSelectedPhoto;
+				if(currPos-1>=0){
+					prevSelectedPhoto = (Photo) AlbumInfo.listView.getItemAtPosition(currPos-1);
+					/*Set the next image to the current photo selected to display in slideshow*/
+					File file = new File(prevSelectedPhoto.getRealPath());
+					ImageView ImgView = (ImageView)findViewById(R.id.view_image);
+					Bitmap bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
+					ImgView.setImageBitmap(bmp);
+					TextView myTextView = (TextView) findViewById(R.id.photoname);
+					myTextView.setText("Photo name: " + prevSelectedPhoto);
+					currPos = currPos-1;
+					adapter.notifyDataSetChanged();
+				}
 				adapter.notifyDataSetChanged();
 			}
 		});
