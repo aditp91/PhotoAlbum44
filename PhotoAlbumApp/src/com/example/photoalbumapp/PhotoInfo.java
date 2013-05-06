@@ -1,18 +1,21 @@
 package com.example.photoalbumapp;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class PhotoInfo extends Activity{
 
@@ -37,9 +40,11 @@ public class PhotoInfo extends Activity{
 		myTextView.setText("Photo name: " + selectedPhoto);
 	
 		/* Display the selectedPhoto onto the layout (large picture) */
-		
-		//IMPLEMENT HERE
-		
+		/*Set the image to the current photo selected to display in slideshow*/
+		File file = new File(AlbumInfo.realPath);
+		ImageView ImgView = (ImageView)findViewById(R.id.view_image);
+		Bitmap bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
+		ImgView.setImageBitmap(bmp);
 		
 		
 		/* set up the list view to hold route names */

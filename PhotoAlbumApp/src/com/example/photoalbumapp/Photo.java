@@ -12,13 +12,13 @@ public class Photo implements Serializable
 	/*Variables*/
 	private final String fileName;
 	private final Calendar cal;
-	private String caption;
+	private String realPath;
 	private ArrayList<Tag> tags;
 	DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy-HH:mm:ss");
     
-    public Photo (String File, String Caption) {
+    public Photo (String File, String realpath) {
 		fileName = File;
-		caption = Caption;
+		realPath = realpath;
 	    cal = Calendar.getInstance();
 	   	cal.set(Calendar.MILLISECOND, 0);
 		tags = new ArrayList<Tag>();
@@ -31,14 +31,14 @@ public class Photo implements Serializable
 		return fileName;
 	}
 
-	public String getCaption() 
+	public String getRealPath() 
 	{
-		return caption;
+		return realPath;
 	}
 
-	public void setCaption(String caption) 
+	public void setRealPath(String realpath) 
 	{
-		this.caption = caption;
+		this.realPath = realpath;
 	}
 
 	public String getTime() 
@@ -46,11 +46,6 @@ public class Photo implements Serializable
 		return dateFormat.format(cal.getTime());
 	}
 	
-	public String getDate()
-	{
-		return Integer.toString(cal.get(Calendar.DATE));
-		
-	}
 	public Calendar getCalendar()
 	{
 		return cal;

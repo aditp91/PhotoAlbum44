@@ -28,7 +28,7 @@ public class AlbumInfo extends Activity{
 	public static Photo selectedPhoto;
 	public MyAlbumList myList;
 	final int SELECT_IMAGE = 1234;
-	public static ImageView imageView;
+	public static String realPath;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -98,10 +98,7 @@ public class AlbumInfo extends Activity{
 				
 				
 			}
-		});
-		
-		
-		
+		});		
 	} 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -112,15 +109,9 @@ public class AlbumInfo extends Activity{
 		if (requestCode == SELECT_IMAGE){
 			if (resultCode == Activity.RESULT_OK) {
 				Uri selectedImage = data.getData();
-				System.out.println("User Info of selected image is: " + selectedImage.getPath());
 				String realPath = getRealPathFromURI(selectedImage);
 				File file = new File(realPath);
-				System.out.println("file Absolute Path: " + realPath);
-				/*Set the image to the current photo selected to display in slideshow*/
-				/*Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-			    imageView=(ImageView)findViewById(R.id.imageView);
-				imageView.setImageBitmap(myBitmap);*/
-				Photo p = new Photo(file.getName(), "");
+				Photo p = new Photo(file.getName(), realPath);
 				myList.addPhoto(selectedAlbum, p);
 				adapter.notifyDataSetChanged();
 			}
