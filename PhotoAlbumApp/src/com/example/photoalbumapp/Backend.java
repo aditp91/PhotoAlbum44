@@ -20,16 +20,19 @@ public class Backend {
 
 	private static Backend instance = null;
 	private Context ctx;
-	final String file = new String("file");
+	final String FILE = new String("file");
+	public Album album;
 	//public ArrayList <Album> albumList = MainActivity.myList.getAlbums(); 
 	
 	public Backend(Context context) {
 		// TODO Auto-generated constructor stub
 		this.ctx = context;
-		File f = new File(ctx.getFilesDir() + File.separator + file);
+		File f = new File(ctx.getFilesDir() + File.separator + FILE);
 		if(f.exists()){
 			try {
-				read();
+				Album a = read();
+				album = a;
+				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -64,13 +67,15 @@ public class Backend {
 		return instance;
 		
 	}
-	public void read() throws ClassNotFoundException, IOException {
+	public Album read() throws ClassNotFoundException, IOException {
 		/* Deserialize an object */
 
-		FileInputStream fis = ctx.openFileInput(file);
+		FileInputStream fis = ctx.openFileInput(FILE);
 		ObjectInputStream is = new ObjectInputStream(fis);
-		//User user = (User) is.readObject();
+	    //User user = (User) is.readObject();
+		Album a = (Album) is.readObject();
 		is.close();
+		return a;
 		//return user;
 //		User user=null; 
 //		String pathname = "data/users/" + userID + ".ser";
@@ -92,35 +97,33 @@ public class Backend {
 //		return null;
 	}
 
-
-	public void addUser() throws IOException {
-
-		/* Serialize an object during logout so get user from userlist*/
-		//System.out.println("user name is  : " + u.getId());
-
-		//String pathname = "users/" + u.getId() + ".ser";
-//		String location = "data/users/";
-		String file = "user";
-		//		File dir = new File(location);
-//		FileOutputStream fw = new FileOutputStream(dir);
-//		
-//		ObjectOutputStream fileOut = new ObjectOutputStream(fw);
-//		fileOut.writeObject(u);
-//		fileOut.close();
-//		fw.close();
-//		return u;
-		File filename = new File("user");
-		FileOutputStream fos = ctx.openFileOutput(file, Context.MODE_PRIVATE);
-		ObjectOutputStream os = new ObjectOutputStream(fos);
-		os.writeObject(this);
-		os.close();
-		//return u;
-	}
+//
+//	public void addUser() throws IOException {
+//
+//		/* Serialize an object during logout so get user from userlist*/
+//		//System.out.println("user name is  : " + u.getId());
+//
+//		//String pathname = "users/" + u.getId() + ".ser";
+////		String location = "data/users/";
+//		//		File dir = new File(location);
+////		FileOutputStream fw = new FileOutputStream(dir);
+////		
+////		ObjectOutputStream fileOut = new ObjectOutputStream(fw);
+////		fileOut.writeObject(u);
+////		fileOut.close();
+////		fw.close();
+////		return u;
+//		FileOutputStream fos = ctx.openFileOutput(file, Context.MODE_PRIVATE);
+//		ObjectOutputStream os = new ObjectOutputStream(fos);
+//		os.writeObject(this);
+//		os.close();
+//		//return u;
+//	}
 
 
 	public void write(Album a) throws FileNotFoundException, IOException {
 		/* Serialize an object during logout so get user from userlist*/
-		FileOutputStream fos = ctx.openFileOutput(file, Context.MODE_PRIVATE);
+		FileOutputStream fos = ctx.openFileOutput(FILE, Context.MODE_PRIVATE);
 		ObjectOutputStream os = new ObjectOutputStream(fos);
 		os.writeObject(a);
 		os.flush();
