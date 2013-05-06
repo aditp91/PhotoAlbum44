@@ -4,23 +4,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/photoname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.00"
         android:orientation="vertical" >
 
+        <TextView
+            android:id="@+id/photoname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
         <ImageView
             android:id="@+id/view_image"
-            android:layout_width="279dp"
-            android:layout_height="199dp"
+            android:layout_width="296dp"
+            android:layout_height="195dp"
             android:src="@drawable/ic_launcher" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -60,7 +61,7 @@
 
         <Button
             android:id="@+id/prev_button"
-            android:layout_width="82dp"
+            android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:text="Prev" />
 
@@ -78,7 +79,7 @@
 
         <Button
             android:id="@+id/next_button"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:text="Next" />
     </LinearLayout>

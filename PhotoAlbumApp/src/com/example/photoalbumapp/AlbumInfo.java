@@ -109,7 +109,7 @@ public class AlbumInfo extends Activity{
 		if (requestCode == SELECT_IMAGE){
 			if (resultCode == Activity.RESULT_OK) {
 				Uri selectedImage = data.getData();
-				String realPath = getRealPathFromURI(selectedImage);
+				realPath = getRealPathFromURI(selectedImage);
 				File file = new File(realPath);
 				Photo p = new Photo(file.getName(), realPath);
 				myList.addPhoto(selectedAlbum, p);

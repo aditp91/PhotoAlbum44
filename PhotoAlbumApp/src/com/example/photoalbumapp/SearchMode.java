@@ -40,7 +40,13 @@ public class SearchMode extends Activity{
 				String value = valueField.getText().toString();
 				ArrayList<Tag> tags = new ArrayList<Tag>();
 				tags.add(new Tag("", value));
-				photo_List = myList.getPhotosByTag(tags);
+				
+				photo_List.clear();
+				ArrayList<Photo> returnedlist = new ArrayList<Photo>();
+				returnedlist = myList.getPhotosByTag(tags);
+				for (Photo pic : returnedlist){
+					photo_List.add(pic);
+				}
 				System.out.println("num photos w/ given tags = " + photo_List.size());
 				adapter.notifyDataSetChanged();
 			}
