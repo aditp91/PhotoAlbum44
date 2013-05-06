@@ -83,7 +83,7 @@ public class MyAlbumList {
 			for (Album a : user.getUserAlbums()) {
 				for (Photo p : a.getPhotos()) {
 					for (Tag t : p.getTags()) {
-						if (tag.getTagType() == null && tag.getTagValue().equals(t.getTagValue())) {
+						if (tag.getTagType().equals("") && tag.getTagValue().equals(t.getTagValue())) {
 							//outputPhotos.add(p);
 							if(!outputPhotos.contains(p))
 								outputPhotos.add(p);

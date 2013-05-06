@@ -41,10 +41,11 @@ public class PhotoInfo extends Activity{
 	
 		/* Display the selectedPhoto onto the layout (large picture) */
 		/*Set the image to the current photo selected to display in slideshow*/
-		File file = new File(AlbumInfo.realPath);
-		ImageView ImgView = (ImageView)findViewById(R.id.view_image);
-		Bitmap bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
-		ImgView.setImageBitmap(bmp);
+		
+//		File file = new File(AlbumInfo.realPath);
+//		ImageView ImgView = (ImageView)findViewById(R.id.view_image);
+//		Bitmap bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
+//		ImgView.setImageBitmap(bmp);
 		
 		
 		/* set up the list view to hold route names */
