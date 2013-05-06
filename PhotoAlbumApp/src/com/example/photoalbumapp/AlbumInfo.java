@@ -33,12 +33,12 @@ public class AlbumInfo extends Activity{
 	public static String currPath;
 	public static int currpos;
 	public static ListView listView;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_albuminfo);
-		
+
 		myList = MainActivity.myList;
 		this.selectedAlbum = MainActivity.selectedAlbum;
 
@@ -54,7 +54,7 @@ public class AlbumInfo extends Activity{
 		// now display it onto the app
 		final ArrayAdapter<Photo> adapter = new ArrayAdapter<Photo>(this, android.R.layout.simple_list_item_1, photoList);
 		listView.setAdapter(adapter);
-		
+
 		adapter.notifyDataSetChanged();
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> a, View v , int position, long id) {
@@ -64,10 +64,10 @@ public class AlbumInfo extends Activity{
 				ImageView ImgView = (ImageView)findViewById(R.id.thumbnail);
 				Bitmap bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
 				ImgView.setImageBitmap(bmp);
-		        currpos = position;
+				currpos = position;
 			}
 		});
-		
+
 		/* when delete button is clicked, delete Photo */
 		removePhoto=(Button) findViewById(R.id.remove_photo);
 		removePhoto.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +88,10 @@ public class AlbumInfo extends Activity{
 		displayPhoto.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				/*open new activity for slideshow*/
-				if(selectedPhoto.getFileName() != null){
+				if(selectedPhoto == null || selectedPhoto.getFileName() == null){
+					Intent i = new Intent(AlbumInfo.this, errorView.class);
+					startActivity(i);
+				} else {
 					currPath = selectedPhoto.getRealPath();
 					Intent j = new Intent(AlbumInfo.this, PhotoInfo.class);
 					startActivity(j);
@@ -105,7 +108,7 @@ public class AlbumInfo extends Activity{
 				startActivityForResult(Intent.createChooser(i, "Choose Photo To Add"),SELECT_IMAGE);
 			}
 		});
-		
+
 		/* when move button is clicked, move Photo */
 		movePhoto=(Button) findViewById(R.id.move_photo);
 		movePhoto.setOnClickListener(new View.OnClickListener() {
@@ -160,12 +163,12 @@ public class AlbumInfo extends Activity{
 			}
 		}
 	}
-	
+
 	public String getRealPathFromURI(Uri contentUri) {
-        String[] proj = { MediaStore.Images.Media.DATA };
-        Cursor cursor = managedQuery(contentUri, proj, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
+		String[] proj = { MediaStore.Images.Media.DATA };
+		Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+		int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+		cursor.moveToFirst();
+		return cursor.getString(column_index);
+	}
 }

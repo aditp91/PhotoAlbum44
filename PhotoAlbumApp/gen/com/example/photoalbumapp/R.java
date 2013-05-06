@@ -29,6 +29,7 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
+        public static final int LinearLayout1=0x7f09001f;
         public static final int LinearLayout2=0x7f090000;
         public static final int add_photo=0x7f090004;
         public static final int add_tag=0x7f090018;
@@ -40,7 +41,8 @@ public final class R {
         public static final int display_photo=0x7f090007;
         public static final int editText=0x7f09000b;
         public static final int editText2=0x7f090003;
-        public static final int menu_settings=0x7f09001f;
+        public static final int highscore_content2=0x7f090020;
+        public static final int menu_settings=0x7f090021;
         public static final int move_photo=0x7f090006;
         public static final int next_button=0x7f09001a;
         public static final int open_view=0x7f09000f;
@@ -67,6 +69,7 @@ public final class R {
         public static final int activity_main=0x7f030001;
         public static final int activity_photoinfo=0x7f030002;
         public static final int activity_searchmode=0x7f030003;
+        public static final int error_view=0x7f030004;
     }
     public static final class menu {
         public static final int activity_main=0x7f080000;

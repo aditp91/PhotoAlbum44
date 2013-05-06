@@ -71,8 +71,14 @@ public class MainActivity extends FragmentActivity{
 		viewAlbum.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				/* open a new 'album view' activity then show its contents.. */
-				Intent i = new Intent(MainActivity.this, AlbumInfo.class);
-				startActivity(i);
+				if (selectedAlbum != null) {
+					Intent i = new Intent(MainActivity.this, AlbumInfo.class);
+					startActivity(i);
+				}
+				else {
+					Intent i = new Intent(MainActivity.this, errorView.class);
+					startActivity(i);
+				}
 			}
 		});
 		
@@ -135,5 +141,4 @@ public class MainActivity extends FragmentActivity{
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-
 }
