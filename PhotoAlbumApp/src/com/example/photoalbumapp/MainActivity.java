@@ -1,8 +1,11 @@
 package com.example.photoalbumapp;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -21,7 +24,7 @@ public class MainActivity extends FragmentActivity{
 	public EditText text;
 	
 	public User user;
-	public Backend backend;
+	private Backend backend;
 	public static MyAlbumList myList;
 	public static Album selectedAlbum;
 	
@@ -33,18 +36,10 @@ public class MainActivity extends FragmentActivity{
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        Context ctx;
+        ctx = this;
+		backend = Backend.getInstance(ctx);
 		
-		try {
-			backend = new Backend();
-			user = new User("username", "first last");
-			backend.addUser(user);
-			user = backend.readUser("username");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 		user = new User("username", "first last");
 		myList = new MyAlbumList(user);
 		
@@ -105,8 +100,20 @@ public class MainActivity extends FragmentActivity{
 						hasIt = true;
 					}
 				}
-				if(hasIt == false && (!getText.equals("")))
+				if(hasIt == false && (!getText.equals(""))){
 					myList.addAlbum(getText);
+					/*write to file*/
+					Album a = new Album(getText);
+					try {
+						backend.write(a);
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				adapter.notifyDataSetChanged();
 			}
 		});
