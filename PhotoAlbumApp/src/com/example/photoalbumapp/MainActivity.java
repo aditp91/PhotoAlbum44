@@ -99,7 +99,7 @@ public class MainActivity extends FragmentActivity{
 						hasIt = true;
 					}
 				}
-				if(hasIt == false)
+				if(hasIt == false && (!getText.equals("")))
 					myList.addAlbum(getText);
 				adapter.notifyDataSetChanged();
 			}
