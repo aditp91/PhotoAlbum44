@@ -40,7 +40,8 @@ public class MainActivity extends FragmentActivity{
         ctx = this;
 		backend = Backend.getInstance(ctx);
 		
-		user = new User("username", "first last");
+		user = backend.user; 
+		//user = new User("username", "first last");
 		myList = new MyAlbumList(user);
 		
 		/* set up the list view to hold route names */
@@ -50,10 +51,11 @@ public class MainActivity extends FragmentActivity{
 		final ArrayAdapter<Album> adapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, myList.getAlbums());
 		listView.setAdapter(adapter);
 		
-		for(Album a: backend.albumList){
+		/*if(user.getUserAlbums() != null){
+		for(Album a: user.getUserAlbums()){
 			myList.addAlbum(a.getName());
 		}
-		
+		}*/
 		adapter.notifyDataSetChanged();
 		/*Get selected Album*/
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -104,9 +106,8 @@ public class MainActivity extends FragmentActivity{
 				if(hasIt == false && (!getText.equals(""))){
 					myList.addAlbum(getText);
 					/*write to file*/
-					Album a = new Album(getText);
 					try {
-						backend.write(a);
+						backend.write(user);
 					} catch (FileNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -141,6 +142,7 @@ public class MainActivity extends FragmentActivity{
 				startActivity(i);
 			}
 		});
+
 	}
 
 	@Override

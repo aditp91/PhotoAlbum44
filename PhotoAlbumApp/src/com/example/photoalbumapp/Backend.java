@@ -20,19 +20,32 @@ public class Backend {
 
 	private static Backend instance = null;
 	private Context ctx;
-	final String FILE = new String("file");
+	final String FILE = new String("file1");
 	public ArrayList<Album> albumList;
 	public Album album;
+	public User user;
 	//public ArrayList <Album> albumList = MainActivity.myList.getAlbums(); 
 	
 	public Backend(Context context) {
 		// TODO Auto-generated constructor stub
 		this.ctx = context;
-		File f = new File(ctx.getFilesDir() + File.separator + FILE);
-		if(f.exists()){
+		File fl = new File(ctx.getFilesDir() + File.separator + FILE);
+		if(fl.exists()){
 			try {
-				read();	
+				user = read();	
 			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else{
+			user = new User("username", "first last");
+			try {
+				write(user);
+			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -66,26 +79,25 @@ public class Backend {
 		return instance;
 		
 	}
-	public void read() throws ClassNotFoundException, IOException {
+	public User read() throws ClassNotFoundException, IOException {
 		/* Deserialize an object */
 		FileInputStream fis = ctx.openFileInput(FILE);
 		ObjectInputStream is = new ObjectInputStream(fis);
-		while(true){
-			Album a = (Album) is.readObject();
-			//System.out.println("Filename: " + a.getName());
-			album = a;
-			albumList.add(a);
-		}
-		//is.close();
+	    User user = (User) is.readObject();
+//		//System.out.println("Filename: " + a.getName());
+//		albumList.add(a);
+//		album = a;
+		is.close();
+		return user;
 		
 	}
 
 
-	public void write(Album a) throws FileNotFoundException, IOException {
+	public void write(User u) throws FileNotFoundException, IOException {
 		/* Serialize an object during logout so get user from userlist*/
 		FileOutputStream fos = ctx.openFileOutput(FILE, Context.MODE_PRIVATE);
 		ObjectOutputStream os = new ObjectOutputStream(fos);
-		os.writeObject(a);
+		os.writeObject(u);
 		os.flush();
 		os.close();
 	}
