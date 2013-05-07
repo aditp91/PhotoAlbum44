@@ -1,6 +1,5 @@
 package com.example.photoalbumapp;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -23,8 +22,8 @@ public class MainActivity extends FragmentActivity{
 	public Button viewAlbum, renameAlbum, createAlbum, deleteAlbum, searchButton;
 	public EditText text;
 	
-	public User user;
-	private Backend backend;
+	public static User user;
+	public static Backend backend;
 	public static MyAlbumList myList;
 	public static Album selectedAlbum;
 	
@@ -41,7 +40,6 @@ public class MainActivity extends FragmentActivity{
 		backend = Backend.getInstance(ctx);
 		
 		user = backend.user; 
-		//user = new User("username", "first last");
 		myList = new MyAlbumList(user);
 		
 		/* set up the list view to hold route names */
@@ -50,13 +48,9 @@ public class MainActivity extends FragmentActivity{
 		// now display it onto the app
 		final ArrayAdapter<Album> adapter = new ArrayAdapter<Album>(this, android.R.layout.simple_list_item_1, myList.getAlbums());
 		listView.setAdapter(adapter);
-		
-		/*if(user.getUserAlbums() != null){
-		for(Album a: user.getUserAlbums()){
-			myList.addAlbum(a.getName());
-		}
-		}*/
+	
 		adapter.notifyDataSetChanged();
+		
 		/*Get selected Album*/
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> a, View v , int position, long id) {
@@ -86,7 +80,18 @@ public class MainActivity extends FragmentActivity{
 			public void onClick(View v) {
 				text = (EditText) findViewById(R.id.editText);
 				String getText = text.getText().toString();
-				selectedAlbum.setName(getText);
+				if(selectedAlbum != null || !getText.equals(""))
+					selectedAlbum.setName(getText);
+				/*write to file*/
+				try {
+					backend.write(user);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -127,6 +132,16 @@ public class MainActivity extends FragmentActivity{
 				for(int i=0; i<myList.getAlbums().size(); i++){
 					if(myList.getAlbums().get(i).getName().equals(selectedAlbum.getName())){
 						myList.deleteAlbum(selectedAlbum);
+						/*write to file*/
+						try {
+							backend.write(user);
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						adapter.notifyDataSetChanged();
 					}
 				}
@@ -144,7 +159,6 @@ public class MainActivity extends FragmentActivity{
 		});
 
 	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

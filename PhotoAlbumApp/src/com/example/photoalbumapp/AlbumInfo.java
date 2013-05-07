@@ -1,6 +1,8 @@
 package com.example.photoalbumapp;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -78,6 +80,16 @@ public class AlbumInfo extends Activity{
 					photoList.add(p);
 				}
 				listView.setAdapter(adapter);
+				/*write to file*/
+				try {
+					MainActivity.backend.write(MainActivity.user);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				adapter.notifyDataSetChanged();
 
 			}
@@ -127,10 +139,17 @@ public class AlbumInfo extends Activity{
 					//add photo to new album
 					getAlbum.setPhotos(selectedPhoto);
 					//delete photo from old album
+					photoList.remove(selectedPhoto);
 					selectedAlbum.deletePhoto(selectedPhoto);
-					photoList.clear();
-					for(Photo p: selectedAlbum.getPhotos()){
-						photoList.add(p);
+					/*write to file*/
+					try {
+						MainActivity.backend.write(MainActivity.user);
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					listView.setAdapter(adapter);
 					adapter.notifyDataSetChanged();
@@ -158,6 +177,16 @@ public class AlbumInfo extends Activity{
 				}
 				if(isThere == false){
 					myList.addPhoto(selectedAlbum, p);
+					/*write to file*/
+					try {
+						MainActivity.backend.write(MainActivity.user);
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					adapter.notifyDataSetChanged();
 				}
 			}

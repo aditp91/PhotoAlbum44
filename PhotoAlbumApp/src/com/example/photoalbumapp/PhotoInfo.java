@@ -1,6 +1,8 @@
 package com.example.photoalbumapp;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -78,6 +80,16 @@ public class PhotoInfo extends Activity{
 				
 				selectedPhoto.addTag(type, value);
 				tagList = selectedPhoto.getTags();
+				/*write to file*/
+				try {
+					MainActivity.backend.write(MainActivity.user);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -85,6 +97,16 @@ public class PhotoInfo extends Activity{
 		deleteTag.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				selectedPhoto.deleteTag(selectedTag);
+				/*write to file*/
+				try {
+					MainActivity.backend.write(MainActivity.user);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -94,7 +116,7 @@ public class PhotoInfo extends Activity{
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Photo nextSelectedPhoto;
-				if(currPos+1<selectedAlbum.getNumPhotos()){
+				if (currPos+1<selectedAlbum.getPhotos().size()){
 					nextSelectedPhoto = (Photo) AlbumInfo.listView.getItemAtPosition(currPos+1);
 					/*Set the next image to the current photo selected to display in slideshow*/
 					File file = new File(nextSelectedPhoto.getRealPath());
