@@ -52,6 +52,7 @@ public class Backend {
 		if(instance == null){
 			instance = new Backend(context);
 		}
+		
 		return instance;
 		
 	}
@@ -65,7 +66,8 @@ public class Backend {
 		
 	}
 
-	public void write(User u) throws FileNotFoundException, IOException {
+	public void write(User u) throws FileNotFoundException, IOException i
+	{
 		/* Serialize an object during logout so get user from userlist*/
 		FileOutputStream fos = ctx.openFileOutput(FILE, Context.MODE_PRIVATE);
 		ObjectOutputStream os = new ObjectOutputStream(fos);
