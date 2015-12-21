@@ -55,4 +55,5 @@ public class Album implements Serializable {
 		String str = this.getName();
 		return str;
 	}
+
 }
